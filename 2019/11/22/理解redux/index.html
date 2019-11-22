@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="redux," />
 
 
 
@@ -79,13 +79,15 @@
 
 
 
-<meta name="description" content="永远年轻,永远热泪盈眶。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Andy">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;index.html">
+<meta name="description" content="简单的状态管理器  123456789101112131415161718192021222324252627282930313233343536373839404142const initState = &amp;#123;   count : 0    &amp;#125;function createStore (initState) &amp;#123;    let state = initState;">
+<meta name="keywords" content="redux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="redux理解">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;22&#x2F;%E7%90%86%E8%A7%A3redux&#x2F;index.html">
 <meta property="og:site_name" content="Andy">
-<meta property="og:description" content="永远年轻,永远热泪盈眶。">
+<meta property="og:description" content="简单的状态管理器  123456789101112131415161718192021222324252627282930313233343536373839404142const initState = &amp;#123;   count : 0    &amp;#125;function createStore (initState) &amp;#123;    let state = initState;">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-11-22T09:09:25.358Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -116,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/11/22/理解redux/"/>
 
 
 
 
 
-  <title>Andy</title>
+  <title>redux理解 | Andy</title>
   
 
 
@@ -141,8 +143,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -235,9 +236,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -267,9 +268,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/11/22/%E7%90%86%E8%A7%A3redux/" itemprop="url">redux理解</a></h1>
+          <h1 class="post-title" itemprop="name headline">redux理解</h1>
         
 
         <div class="post-meta">
@@ -341,9 +340,7 @@
       
 
       
-        
-          
-            <ol>
+        <ol>
 <li>简单的状态管理器</li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">const initState = &#123;</span><br><span class="line">   count : 0    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function createStore (initState) &#123;</span><br><span class="line">    let state = initState;</span><br><span class="line">    let listeners = [];</span><br><span class="line">    function subscribe(listener) &#123;</span><br><span class="line">        listeners.push(listener)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function changeState (newState) &#123;</span><br><span class="line">        state = newState</span><br><span class="line">        for(let i = 0, len = listeners.length; i&lt; len; i++)&#123;</span><br><span class="line">            typeof listeners[i] === &apos;function&apos; &amp;&amp;  listeners[i]()  </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function getState() &#123;</span><br><span class="line">        return state</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return &#123;</span><br><span class="line">        subscribe,</span><br><span class="line">        getState,</span><br><span class="line">        changeState</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const store = createStore(initState)</span><br><span class="line"></span><br><span class="line">store.subscribe(()=&gt;&#123;</span><br><span class="line">    console.log(&apos;state&apos;,store.getState())  // &#123; count : 2&#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">store.changeState(&#123; count : 2&#125;)</span><br><span class="line">store.changeState(&#123;</span><br><span class="line">    ...store.getState(),</span><br><span class="line">    info : &#123;</span><br><span class="line">       name : &apos;andy&apos; </span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
@@ -367,8 +364,6 @@
 
 
 
-          
-        
       
     </div>
     
@@ -383,312 +378,36 @@
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/31/%E6%B5%8F%E8%A7%88%E5%99%A8URL/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Andy">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Andy">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/10/31/%E6%B5%8F%E8%A7%88%E5%99%A8URL/" itemprop="url">浏览器URL</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-31T15:50:44+08:00">
-                2019-10-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
-                    <span itemprop="name">学习笔记</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/redux/" rel="tag"># redux</a>
           
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="浏览器输入URL到页面展示发生了什么"><a href="#浏览器输入URL到页面展示发生了什么" class="headerlink" title="浏览器输入URL到页面展示发生了什么?"></a>浏览器输入URL到页面展示发生了什么?</h3><hr>
-<ol>
-<li>用户输入关键词,地址栏判断是搜索内容还是url地址。如果是搜索内容，会使用浏览器默认搜索引擎+搜索内容合成URL。如果是域名则会加上协议( 如https )合成完整的url。</li>
-<li>按下回车,浏览器进程通过<b>IPC</b> (<b>进程间通信</b>) 把url传给网络进程(网络进程接收到url才发起真正的网络请求)。</li>
-<li>网络进程接收到url后，先查找有没有浏览器缓存。有缓存，直接返回缓存的资源。没有缓存，进入到真正的网络请求。</li>
-<li>利用IP地址和服务器建立TCP连接（3次🤝）。</li>
-<li>建立连接后，浏览器构建数据包(包含请求行,请求头,请求正文,并把该域名相关的<b>Cookie</b> 等数据附加到请求头),然后向服务器发送请求消息。</li>
-<li>服务器收到消息后根据请求信息构建响应数据(包括响应行,响应头,响应正文),然后发送回网络进程。</li>
-<li>网络进程收到相应的数据后进行解析。如果发现响应返回的状态码是301,302，说明服务器要我们去找别人的数据，找响应头中的<b>Location</b>字段，<b>Location</b> 的内容是需要重定向的<b>url</b>。获取到这个url,重复1-6步骤。如果返回的状态码是200，说明服务器返回了数据。</li>
-<li>获取到返回数据的打开方式。打开方式就是<b>Content-Type</b>。这个属性告诉浏览器服务器返回的数据是什么类型，如果返回的是网页类型<b>text/html</b>。<br>如果是下载类型，则该请求会被交给浏览器的下载管理器，同时该请求的流程到此结束。如果是网页类型，那么浏览器就要开始准备渲染页面了。</li>
-<li>渲染页面开始。浏览器发出“提交文档”(文档是响应体数据)消息给渲染进程。<b>渲染进程</b>接收到消息后回和<b>网络进程</b>建立传输数据的通道，网络进程将”文档”传输给渲染进程。</li>
-<li>一旦传输开始，渲染进程就会开始渲染界面。</li>
-<li>传输完毕，渲染进程会发出“确认提交”消息给浏览器进程。</li>
-<li>浏览器在接收到“确认提交”消息后，更新浏览器界面状态(包括地址栏信息，前进后退历史记录，web页面，页面安全状态)。</li>
-<li>页面此时可能还没有渲染完毕。一旦渲染完毕，渲染进程会发送一个消息给浏览器进程，浏览器接收到这个消息后会停止标签图标的加载动画。</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
       
 
       
       
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
       
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/31/test/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Andy">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Andy">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/10/31/test/" itemprop="url">test</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-31T11:06:54+08:00">
-                2019-10-31
-              </time>
+              <a href="/2019/10/31/%E6%B5%8F%E8%A7%88%E5%99%A8URL/" rel="next" title="浏览器URL">
+                <i class="fa fa-chevron-left"></i> 浏览器URL
+              </a>
             
+          </div>
 
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
-                    <span itemprop="name">学习笔记</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -698,10 +417,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -709,6 +429,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -924,6 +648,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
